@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/NavBar'
+import ExercisesList from './components/ExercisesList'
+import EditExercise from './components/EditExercise'
+import CreateExercise from './components/CreateExercise'
+import CreateUser from './components/CreateUser'
+import { Grid, Header } from 'semantic-ui-react'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+      <Grid verticalAlign='right' columns={3} divided>
+      <Grid.Row>
+      <Header as='h3' dividing>
+      </Header>
+      </Grid.Row>
+      <Grid.Column >
+      <Grid.Row>
+        <NavBar />
+      </Grid.Row>
+      </Grid.Column>
+      <Route path="/" exact component={ExercisesList} />
+      <Route path="/edit/:id" component={EditExercise} />
+      <Route path="/create" component={CreateExercise} />
+      <Route path="/user" component={CreateUser} />
+      </Grid >
+      </div>
+    </Router>
   );
 }
 
